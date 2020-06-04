@@ -1,0 +1,24 @@
+﻿@model Sistema.Web.Data.Entities.Position
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Position</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Position_Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Position_Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Position_Id" class="btn btn-md btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-md btn-info">Back to List</a>
+</div>

@@ -1,0 +1,24 @@
+﻿@model Sistema.Web.Data.Entities.Document
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Document</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Document_Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Document_Name)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Document_Id" class="btn btn-md btn-primary">Edit</a> |
+    <a asp-action="Index" class="btn btn-md btn-info">Back to List</a>
+</div>
