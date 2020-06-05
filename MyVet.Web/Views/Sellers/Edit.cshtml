@@ -1,0 +1,66 @@
+﻿@model Sistema.Web.Data.Entities.Seller
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Seller</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Seller_Id" />
+            <div class="form-group">
+                <label asp-for="Codigo_Vendedor" class="control-label"></label>
+                <input asp-for="Codigo_Vendedor" class="form-control" />
+                <span asp-validation-for="Codigo_Vendedor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller_Name" class="control-label"></label>
+                <input asp-for="Seller_Name" class="form-control" />
+                <span asp-validation-for="Seller_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Seller_Lastname" class="control-label"></label>
+                <input asp-for="Seller_Lastname" class="form-control" />
+                <span asp-validation-for="Seller_Lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ID_Doc" class="control-label"></label>
+                <input asp-for="ID_Doc" class="form-control" />
+                <span asp-validation-for="ID_Doc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document" class="control-label"></label>
+                <input asp-for="Document" class="form-control" />
+                <span asp-validation-for="Document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cellphone" class="control-label"></label>
+                <input asp-for="Cellphone" class="form-control" />
+                <span asp-validation-for="Cellphone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

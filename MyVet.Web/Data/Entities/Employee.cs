@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Sistema.Web.Data.Entities
 {
     public class Employee
     {
+
         [Key]
-        public int Employee_Id { get; set; }
+        public int Employe_Id { get; set; }
+
+
 
         [Display(Name = "ID Empleado")]
-        public int Codigo_Empleado { get; set; }
+        public string Codigo_Empleado { get; set; }
 
         [Display(Name = "Nombre")]
         [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
@@ -30,6 +33,11 @@ namespace Sistema.Web.Data.Entities
         [ForeignKey("Document")]
         public int Document_Id { get; set; }
         public Document Document { get; set; }
+
+        [Display(Name = "Código Documento")]
+        [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
+        [Required(ErrorMessage = "The field {0} is mandatory.")]
+        public string Document_Codigo { get; set; }
 
         [MaxLength(20, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Display(Name = "Teléfono")]
@@ -50,6 +58,7 @@ namespace Sistema.Web.Data.Entities
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         [Display(Name = "Estado")]
         public bool Status { get; set; }
+
 
         //-----Relacion Position-----
         [Display(Name = "Posición")]

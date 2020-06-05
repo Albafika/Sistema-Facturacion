@@ -37,7 +37,7 @@ namespace Sistema.Web.Controllers
             var employee = await _context.Employee
                 .Include(e => e.Document)
                 .Include(e => e.Position)
-                .FirstOrDefaultAsync(m => m.Employee_Id == id);
+                .FirstOrDefaultAsync(m => m.Employe_Id == id);
             if (employee == null)
             {
                 return NotFound();
@@ -49,7 +49,7 @@ namespace Sistema.Web.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
-            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Document_Name");
+            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento");
             ViewData["Position_Id"] = new SelectList(_context.Position, "Position_Id", "Position_Name");
             return View();
         }
@@ -59,7 +59,7 @@ namespace Sistema.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Employee_Id,Employee_Name,Employee_Lastname,Document_Id,Phone,Cellphone,Extension,Email,Status,Position_Id,Fecha_Ingreso")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Employe_Id,Codigo_Empleado,Employee_Name,Employee_Lastname,Document_Id,Document_Codigo,Phone,Cellphone,Extension,Email,Status,Position_Id,Fecha_Ingreso")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace Sistema.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Document_Name", employee.Document_Id);
+            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", employee.Document_Id);
             ViewData["Position_Id"] = new SelectList(_context.Position, "Position_Id", "Position_Name", employee.Position_Id);
             return View(employee);
         }
@@ -85,7 +85,7 @@ namespace Sistema.Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Document_Name", employee.Document_Id);
+            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", employee.Document_Id);
             ViewData["Position_Id"] = new SelectList(_context.Position, "Position_Id", "Position_Name", employee.Position_Id);
             return View(employee);
         }
@@ -95,9 +95,9 @@ namespace Sistema.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Employee_Id,Employee_Name,Employee_Lastname,Document_Id,Phone,Cellphone,Extension,Email,Status,Position_Id,Fecha_Ingreso")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("Employe_Id,Codigo_Empleado,Employee_Name,Employee_Lastname,Document_Id,Document_Codigo,Phone,Cellphone,Extension,Email,Status,Position_Id,Fecha_Ingreso")] Employee employee)
         {
-            if (id != employee.Employee_Id)
+            if (id != employee.Employe_Id)
             {
                 return NotFound();
             }
@@ -111,7 +111,7 @@ namespace Sistema.Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmployeeExists(employee.Employee_Id))
+                    if (!EmployeeExists(employee.Employe_Id))
                     {
                         return NotFound();
                     }
@@ -122,7 +122,7 @@ namespace Sistema.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Document_Name", employee.Document_Id);
+            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", employee.Document_Id);
             ViewData["Position_Id"] = new SelectList(_context.Position, "Position_Id", "Position_Name", employee.Position_Id);
             return View(employee);
         }
@@ -138,7 +138,7 @@ namespace Sistema.Web.Controllers
             var employee = await _context.Employee
                 .Include(e => e.Document)
                 .Include(e => e.Position)
-                .FirstOrDefaultAsync(m => m.Employee_Id == id);
+                .FirstOrDefaultAsync(m => m.Employe_Id == id);
             if (employee == null)
             {
                 return NotFound();
@@ -160,7 +160,7 @@ namespace Sistema.Web.Controllers
 
         private bool EmployeeExists(int id)
         {
-            return _context.Employee.Any(e => e.Employee_Id == id);
+            return _context.Employee.Any(e => e.Employe_Id == id);
         }
     }
 }

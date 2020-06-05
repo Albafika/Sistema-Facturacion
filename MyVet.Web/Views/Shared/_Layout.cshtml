@@ -39,7 +39,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
+                    <a href="" class="nav-link">Home</a>
                 </li>
             </ul>
         </nav>
@@ -47,8 +47,8 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <a href="" class="brand-link">
+                <img src="~/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                      style="opacity: .8">
                 <span class="brand-text font-weight-light">Mi Sistema</span>
             </a>
@@ -80,15 +80,63 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="ArticleClassifications" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Clasificación Artículos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Articles" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Artículos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Brands" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Marcas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Cities" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Ciudades</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Companies" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Empresas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Countries" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Paises</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Monedas" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Monedas</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" asp-area="" asp-controller="Client_Classification" asp-action="Index">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Clasificación Clientes</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Costumers" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Clientes</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link" asp-area="" asp-controller="Documents" asp-action="Index">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Documentos</p>
+                                        <p>Tipos de Documentos</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -97,10 +145,40 @@
                                         <p>Empleados</p>
                                     </a>
                                 </li>
+                                @*FALTA Tasas de cambio*@
                                 <li class="nav-item">
                                     <a class="nav-link" asp-area="" asp-controller="Positions" asp-action="Index">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Posiciones</p>
+                                        <p>Puestos de Trabajo</p>
+                                    </a>
+                                </li>
+                                @*FALTA Ubicaciones*@
+                                @*FALTA FORMAS DE PAGO*@
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Sellers" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Vendedores</p>
+                                    </a>
+                                </li>
+                                @*FALTA FORMAS DE PAGO*@
+                                @*FALTA ESTATUS*@
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="States" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Estados</p>
+                                    </a>
+                                </li>
+                                @*FALTA clasificacion suplidores*@
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Suppliers" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Suplidores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Neighborhoods" asp-action="Index">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Municipios</p>
                                     </a>
                                 </li>
                             </ul>

@@ -1,0 +1,66 @@
+﻿@model Sistema.Web.Data.Entities.Customer
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Customer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Customer_Id" />
+            <div class="form-group">
+                <label asp-for="NombreC" class="control-label"></label>
+                <input asp-for="NombreC" class="form-control" />
+                <span asp-validation-for="NombreC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApellidoC" class="control-label"></label>
+                <input asp-for="ApellidoC" class="form-control" />
+                <span asp-validation-for="ApellidoC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ID_Doc" class="control-label"></label>
+                <input asp-for="ID_Doc" class="form-control" />
+                <span asp-validation-for="ID_Doc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClientClass_Id" class="control-label"></label>
+                <input asp-for="ClientClass_Id" class="form-control" />
+                <span asp-validation-for="ClientClass_Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Document" class="control-label"></label>
+                <input asp-for="Document" class="form-control" />
+                <span asp-validation-for="Document" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelefonC" class="control-label"></label>
+                <input asp-for="TelefonC" class="form-control" />
+                <span asp-validation-for="TelefonC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Correo" class="control-label"></label>
+                <input asp-for="Correo" class="form-control" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DireccionC" class="control-label"></label>
+                <input asp-for="DireccionC" class="form-control" />
+                <span asp-validation-for="DireccionC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

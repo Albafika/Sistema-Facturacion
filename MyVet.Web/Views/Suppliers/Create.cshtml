@@ -1,0 +1,59 @@
+﻿@model Sistema.Web.Data.Entities.Supplier
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Supplier</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Supplier_Name" class="control-label"></label>
+                <input asp-for="Supplier_Name" class="form-control" />
+                <span asp-validation-for="Supplier_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Numero" class="control-label"></label>
+                <input asp-for="Numero" class="form-control" />
+                <span asp-validation-for="Numero" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupplierC" class="control-label"></label>
+                <input asp-for="SupplierC" class="form-control" />
+                <span asp-validation-for="SupplierC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="phone" class="control-label"></label>
+                <input asp-for="phone" class="form-control" />
+                <span asp-validation-for="phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Neighborhood_Id" class="control-label"></label>
+                <select asp-for="Neighborhood_Id" class ="form-control" asp-items="ViewBag.Neighborhood_Id"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="correo" class="control-label"></label>
+                <input asp-for="correo" class="form-control" />
+                <span asp-validation-for="correo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="name_contacta" class="control-label"></label>
+                <input asp-for="name_contacta" class="form-control" />
+                <span asp-validation-for="name_contacta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

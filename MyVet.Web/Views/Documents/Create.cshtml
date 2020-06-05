@@ -13,9 +13,9 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Document_Name" class="control-label"></label>
-                <input asp-for="Document_Name" class="form-control" />
-                <span asp-validation-for="Document_Name" class="text-danger"></span>
+                <label asp-for="Documento" class="control-label"></label>
+                <input asp-for="Documento" class="form-control" />
+                <span asp-validation-for="Documento" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -25,6 +25,6 @@
 </div>
 
 <div>
-    <a asp-action="Index" class="btn btn-md btn-info">Back to List</a>
+    <a asp-action="Index">Back to List</a>
 </div>
 

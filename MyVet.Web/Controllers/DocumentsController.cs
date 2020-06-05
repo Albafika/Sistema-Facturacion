@@ -54,7 +54,7 @@ namespace Sistema.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Document_Id,Document_Name")] Document document)
+        public async Task<IActionResult> Create([Bind("Document_Id,Documento")] Document document)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace Sistema.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Document_Id,Document_Name")] Document document)
+        public async Task<IActionResult> Edit(int id, [Bind("Document_Id,Documento")] Document document)
         {
             if (id != document.Document_Id)
             {

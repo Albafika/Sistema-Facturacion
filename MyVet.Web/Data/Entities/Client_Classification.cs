@@ -13,7 +13,7 @@ namespace Sistema.Web.Data.Entities
         public int ClientClass_Id { get; set; }
 
 
-        [Display(Name = "Clasificación")]
+        [Display(Name = "Clasificación de Clientes")]
         [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         public string Classicifcation_Name { get; set; }
@@ -27,5 +27,7 @@ namespace Sistema.Web.Data.Entities
         //public ICollection<Client> Clients { get; set; }
 
 
+        public ICollection<Company> Companies { get; set; }
+        public ICollection<Customer> Customers { get; set; }
     }
 }

@@ -12,6 +12,12 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Codigo_Empleado)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Codigo_Empleado)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Employee_Name)
         </dt>
         <dd class = "col-sm-10">
@@ -27,8 +33,14 @@
             @Html.DisplayNameFor(model => model.Document)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Document.Document_Name)
+            @Html.DisplayFor(model => model.Document.Documento)
         </dd class>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Document_Codigo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Document_Codigo)
+        </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Phone)
         </dt>
@@ -74,8 +86,8 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="Employee_Id" />
+        <input type="hidden" asp-for="Employe_Id" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index" class="btn btn-md btn-info">Back to List</a>
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

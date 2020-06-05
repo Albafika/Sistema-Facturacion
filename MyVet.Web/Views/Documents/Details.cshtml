@@ -11,14 +11,14 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Document_Name)
+            @Html.DisplayNameFor(model => model.Documento)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Document_Name)
+            @Html.DisplayFor(model => model.Documento)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Document_Id" class="btn btn-md btn-primary">Edit</a> |
-    <a asp-action="Index" class="btn btn-md btn-info">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Document_Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
 </div>
