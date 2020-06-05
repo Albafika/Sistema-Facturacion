@@ -26,7 +26,6 @@ namespace Sistema.Web.Data.Entities
 
         //public ICollection<Client> Clients { get; set; }
 
-
         public ICollection<Company> Companies { get; set; }
         public ICollection<Customer> Customers { get; set; }
     }
