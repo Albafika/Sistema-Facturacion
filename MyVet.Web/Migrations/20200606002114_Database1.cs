@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Sistema.Web.Migrations
 {
-    public partial class CompleteDB : Migration
+    public partial class Database1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -157,11 +157,10 @@ namespace Sistema.Web.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NombreC = table.Column<string>(maxLength: 30, nullable: false),
                     ApellidoC = table.Column<string>(maxLength: 30, nullable: false),
-                    ID_Doc = table.Column<int>(nullable: false),
-                    DocumentsDocument_Id = table.Column<int>(nullable: true),
+                    Document_Id = table.Column<int>(nullable: false),
                     ClientClass_Id = table.Column<int>(nullable: false),
                     Client_ClassificationClientClass_Id = table.Column<int>(nullable: true),
-                    Document = table.Column<string>(maxLength: 50, nullable: false),
+                    Document_Number = table.Column<string>(maxLength: 50, nullable: false),
                     TelefonC = table.Column<string>(maxLength: 15, nullable: false),
                     Correo = table.Column<string>(nullable: false),
                     DireccionC = table.Column<string>(maxLength: 200, nullable: false)
@@ -176,11 +175,11 @@ namespace Sistema.Web.Migrations
                         principalColumn: "ClientClass_Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Customer_Document_DocumentsDocument_Id",
-                        column: x => x.DocumentsDocument_Id,
+                        name: "FK_Customer_Document_Document_Id",
+                        column: x => x.Document_Id,
                         principalTable: "Document",
                         principalColumn: "Document_Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -192,9 +191,8 @@ namespace Sistema.Web.Migrations
                     Codigo_Vendedor = table.Column<string>(nullable: true),
                     Seller_Name = table.Column<string>(maxLength: 50, nullable: false),
                     Seller_Lastname = table.Column<string>(maxLength: 50, nullable: false),
-                    ID_Doc = table.Column<int>(nullable: false),
-                    DocumentsDocument_Id = table.Column<int>(nullable: true),
-                    Document = table.Column<string>(maxLength: 50, nullable: false),
+                    Document_Id = table.Column<int>(nullable: false),
+                    DocumentRef = table.Column<string>(maxLength: 50, nullable: false),
                     Phone = table.Column<string>(maxLength: 20, nullable: true),
                     Cellphone = table.Column<string>(maxLength: 20, nullable: true),
                     Email = table.Column<string>(maxLength: 50, nullable: true)
@@ -203,11 +201,11 @@ namespace Sistema.Web.Migrations
                 {
                     table.PrimaryKey("PK_Seller", x => x.Seller_Id);
                     table.ForeignKey(
-                        name: "FK_Seller_Document_DocumentsDocument_Id",
-                        column: x => x.DocumentsDocument_Id,
+                        name: "FK_Seller_Document_Document_Id",
+                        column: x => x.Document_Id,
                         principalTable: "Document",
                         principalColumn: "Document_Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -407,9 +405,9 @@ namespace Sistema.Web.Migrations
                 column: "Client_ClassificationClientClass_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customer_DocumentsDocument_Id",
+                name: "IX_Customer_Document_Id",
                 table: "Customer",
-                column: "DocumentsDocument_Id");
+                column: "Document_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_Document_Id",
@@ -432,9 +430,9 @@ namespace Sistema.Web.Migrations
                 column: "City_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Seller_DocumentsDocument_Id",
+                name: "IX_Seller_Document_Id",
                 table: "Seller",
-                column: "DocumentsDocument_Id");
+                column: "Document_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_State_Country_Id",

@@ -26,8 +26,8 @@ namespace Sistema.Web.Data.Entities
         //-----Relacion Document-----
         [Display(Name = "Documento")]
         [ForeignKey("Document")]
-        public int ID_Doc { get; set; }
-        public Document Documents { get; set; }
+        public int Document_Id { get; set; }
+        public Document Document { get; set; }
 
 
         //-----Relacion ClassifiCustomer-----
@@ -38,8 +38,8 @@ namespace Sistema.Web.Data.Entities
 
         [Required]
         [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
-        [Display(Name = "Numero De Referencia")]
-        public string Document { get; set; }
+        [Display(Name = "Numero De Documento")]
+        public string Document_Number { get; set; }
 
         [Required]
         [MaxLength(15, ErrorMessage = "The field {0} only can contain a maximum {1} characters")]

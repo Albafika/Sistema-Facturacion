@@ -29,12 +29,12 @@ namespace Sistema.Web.Data.Entities
 		//-----Relacion Document-----
         [Display(Name = "Documento")]
         [ForeignKey("Document")]
-        public int ID_Doc { get; set; }
-        public Document Documents { get; set; }
+        public int Document_Id { get; set; }
+        public Document Document { get; set; }
         [Required]
         [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
-        [Display(Name = "Numero De Referencia")]
-        public string Document { get; set; }
+        [Display(Name = "Numero De Documento")]
+        public string DocumentRef { get; set; }
 
 
         [MaxLength(20, ErrorMessage = "The {0} field can not have more than {1} characters.")]

@@ -22,7 +22,8 @@ namespace Sistema.Web.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Customer.ToListAsync());
+            var dataContext = _context.Customer.Include(c => c.Document);
+            return View(await dataContext.ToListAsync());
         }
 
         // GET: Customers/Details/5
@@ -34,6 +35,7 @@ namespace Sistema.Web.Controllers
             }
 
             var customer = await _context.Customer
+                .Include(c => c.Document)
                 .FirstOrDefaultAsync(m => m.Customer_Id == id);
             if (customer == null)
             {
@@ -46,6 +48,7 @@ namespace Sistema.Web.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
+            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace Sistema.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Customer_Id,NombreC,ApellidoC,ID_Doc,ClientClass_Id,Document,TelefonC,Correo,DireccionC")] Customer customer)
+        public async Task<IActionResult> Create([Bind("Customer_Id,NombreC,ApellidoC,Document_Id,ClientClass_Id,Document_Number,TelefonC,Correo,DireccionC")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace Sistema.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", customer.Document_Id);
             return View(customer);
         }
 
@@ -78,6 +82,7 @@ namespace Sistema.Web.Controllers
             {
                 return NotFound();
             }
+            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", customer.Document_Id);
             return View(customer);
         }
 
@@ -86,7 +91,7 @@ namespace Sistema.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Customer_Id,NombreC,ApellidoC,ID_Doc,ClientClass_Id,Document,TelefonC,Correo,DireccionC")] Customer customer)
+        public async Task<IActionResult> Edit(int id, [Bind("Customer_Id,NombreC,ApellidoC,Document_Id,ClientClass_Id,Document_Number,TelefonC,Correo,DireccionC")] Customer customer)
         {
             if (id != customer.Customer_Id)
             {
@@ -113,6 +118,7 @@ namespace Sistema.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", customer.Document_Id);
             return View(customer);
         }
 
@@ -125,6 +131,7 @@ namespace Sistema.Web.Controllers
             }
 
             var customer = await _context.Customer
+                .Include(c => c.Document)
                 .FirstOrDefaultAsync(m => m.Customer_Id == id);
             if (customer == null)
             {

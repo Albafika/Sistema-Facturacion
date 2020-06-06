@@ -10,8 +10,8 @@ using Sistema.Web.Data;
 namespace Sistema.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200605225849_CompleteDB")]
-    partial class CompleteDB
+    [Migration("20200606002114_Database1")]
+    partial class Database1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -224,16 +224,13 @@ namespace Sistema.Web.Migrations
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<string>("Document")
+                    b.Property<int>("Document_Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Document_Number")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-
-                    b.Property<int?>("DocumentsDocument_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ID_Doc")
-                        .HasColumnType("int");
 
                     b.Property<string>("NombreC")
                         .IsRequired()
@@ -249,7 +246,7 @@ namespace Sistema.Web.Migrations
 
                     b.HasIndex("Client_ClassificationClientClass_Id");
 
-                    b.HasIndex("DocumentsDocument_Id");
+                    b.HasIndex("Document_Id");
 
                     b.ToTable("Customer");
                 });
@@ -434,20 +431,17 @@ namespace Sistema.Web.Migrations
                     b.Property<string>("Codigo_Vendedor")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Document")
+                    b.Property<string>("DocumentRef")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int?>("DocumentsDocument_Id")
+                    b.Property<int>("Document_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
-
-                    b.Property<int>("ID_Doc")
-                        .HasColumnType("int");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(20)")
@@ -465,7 +459,7 @@ namespace Sistema.Web.Migrations
 
                     b.HasKey("Seller_Id");
 
-                    b.HasIndex("DocumentsDocument_Id");
+                    b.HasIndex("Document_Id");
 
                     b.ToTable("Seller");
                 });
@@ -585,9 +579,11 @@ namespace Sistema.Web.Migrations
                         .WithMany("Customers")
                         .HasForeignKey("Client_ClassificationClientClass_Id");
 
-                    b.HasOne("Sistema.Web.Data.Entities.Document", "Documents")
+                    b.HasOne("Sistema.Web.Data.Entities.Document", "Document")
                         .WithMany("Customers")
-                        .HasForeignKey("DocumentsDocument_Id");
+                        .HasForeignKey("Document_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Sistema.Web.Data.Entities.Employee", b =>
@@ -625,9 +621,11 @@ namespace Sistema.Web.Migrations
 
             modelBuilder.Entity("Sistema.Web.Data.Entities.Seller", b =>
                 {
-                    b.HasOne("Sistema.Web.Data.Entities.Document", "Documents")
+                    b.HasOne("Sistema.Web.Data.Entities.Document", "Document")
                         .WithMany("Sellers")
-                        .HasForeignKey("DocumentsDocument_Id");
+                        .HasForeignKey("Document_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Sistema.Web.Data.Entities.State", b =>

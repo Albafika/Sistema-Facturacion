@@ -28,14 +28,13 @@
                 <span asp-validation-for="Seller_Lastname" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ID_Doc" class="control-label"></label>
-                <input asp-for="ID_Doc" class="form-control" />
-                <span asp-validation-for="ID_Doc" class="text-danger"></span>
+                <label asp-for="Document_Id" class="control-label"></label>
+                <select asp-for="Document_Id" class ="form-control" asp-items="ViewBag.Document_Id"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Document" class="control-label"></label>
-                <input asp-for="Document" class="form-control" />
-                <span asp-validation-for="Document" class="text-danger"></span>
+                <label asp-for="DocumentRef" class="control-label"></label>
+                <input asp-for="DocumentRef" class="form-control" />
+                <span asp-validation-for="DocumentRef" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Phone" class="control-label"></label>
