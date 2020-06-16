@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Sistema.Web.Migrations
 {
-    public partial class Database1 : Migration
+    public partial class DatabaseTest : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -313,9 +313,8 @@ namespace Sistema.Web.Migrations
                     Company_Name = table.Column<string>(nullable: false),
                     ClientClass_Id = table.Column<int>(nullable: false),
                     Client_ClassificationClientClass_Id = table.Column<int>(nullable: true),
-                    ID_Doc = table.Column<int>(nullable: false),
-                    DocumentsDocument_Id = table.Column<int>(nullable: true),
-                    Document = table.Column<string>(maxLength: 50, nullable: false),
+                    Document_Id = table.Column<int>(nullable: false),
+                    Document_Code = table.Column<string>(maxLength: 50, nullable: false),
                     Direccion = table.Column<string>(nullable: false),
                     Neighborhood_Id = table.Column<int>(nullable: false),
                     correo = table.Column<string>(nullable: false),
@@ -331,11 +330,11 @@ namespace Sistema.Web.Migrations
                         principalColumn: "ClientClass_Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Company_Document_DocumentsDocument_Id",
-                        column: x => x.DocumentsDocument_Id,
+                        name: "FK_Company_Document_Document_Id",
+                        column: x => x.Document_Id,
                         principalTable: "Document",
                         principalColumn: "Document_Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Company_Neighborhood_Neighborhood_Id",
                         column: x => x.Neighborhood_Id,
@@ -390,9 +389,9 @@ namespace Sistema.Web.Migrations
                 column: "Client_ClassificationClientClass_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Company_DocumentsDocument_Id",
+                name: "IX_Company_Document_Id",
                 table: "Company",
-                column: "DocumentsDocument_Id");
+                column: "Document_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Company_Neighborhood_Id",

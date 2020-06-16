@@ -10,8 +10,8 @@ using Sistema.Web.Data;
 namespace Sistema.Web.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200606002114_Database1")]
-    partial class Database1
+    [Migration("20200616000914_DatabaseTest")]
+    partial class DatabaseTest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -147,15 +147,12 @@ namespace Sistema.Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Document")
+                    b.Property<string>("Document_Code")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int?>("DocumentsDocument_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ID_Doc")
+                    b.Property<int>("Document_Id")
                         .HasColumnType("int");
 
                     b.Property<int>("Neighborhood_Id")
@@ -173,7 +170,7 @@ namespace Sistema.Web.Migrations
 
                     b.HasIndex("Client_ClassificationClientClass_Id");
 
-                    b.HasIndex("DocumentsDocument_Id");
+                    b.HasIndex("Document_Id");
 
                     b.HasIndex("Neighborhood_Id");
 
@@ -562,9 +559,11 @@ namespace Sistema.Web.Migrations
                         .WithMany("Companies")
                         .HasForeignKey("Client_ClassificationClientClass_Id");
 
-                    b.HasOne("Sistema.Web.Data.Entities.Document", "Documents")
+                    b.HasOne("Sistema.Web.Data.Entities.Document", "Document")
                         .WithMany("Companies")
-                        .HasForeignKey("DocumentsDocument_Id");
+                        .HasForeignKey("Document_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Sistema.Web.Data.Entities.Neighborhood", "Neighborhood")
                         .WithMany("Companies")

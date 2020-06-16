@@ -13,7 +13,7 @@ namespace Sistema.Web.Data
         {
 
         }
-
+        
         public DbSet<Sistema.Web.Data.Entities.Article> Article { get; set; }
         public DbSet<Sistema.Web.Data.Entities.ArticleClassification> ArticleClassification { get; set; }
         public DbSet<Sistema.Web.Data.Entities.Brand> Brand { get; set; }
