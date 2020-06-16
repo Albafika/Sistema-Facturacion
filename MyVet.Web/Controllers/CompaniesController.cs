@@ -22,7 +22,7 @@ namespace Sistema.Web.Controllers
         // GET: Companies
         public async Task<IActionResult> Index()
         {
-            var dataContext = _context.Company.Include(c => c.Document).Include(c => c.Neighborhood);
+            var dataContext = _context.Company.Include(c => c.Company_Classification).Include(c => c.Document).Include(c => c.Neighborhood);
             return View(await dataContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace Sistema.Web.Controllers
             }
 
             var company = await _context.Company
+                .Include(c => c.Company_Classification)
                 .Include(c => c.Document)
                 .Include(c => c.Neighborhood)
                 .FirstOrDefaultAsync(m => m.Company_Id == id);
@@ -49,6 +50,7 @@ namespace Sistema.Web.Controllers
         // GET: Companies/Create
         public IActionResult Create()
         {
+            ViewData["CompanyClass_Id"] = new SelectList(_context.Company_Classification, "CompanyClass_Id", "CompanyClass_Name");
             ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento");
             ViewData["Neighborhood_Id"] = new SelectList(_context.Neighborhood, "Neighborhood_Id", "Neighborhood_Name");
             return View();
@@ -59,7 +61,7 @@ namespace Sistema.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Company_Id,Company_Name,ClientClass_Id,Document_Id,Document_Code,Direccion,Neighborhood_Id,correo,phone")] Company company)
+        public async Task<IActionResult> Create([Bind("Company_Id,Company_Name,CompanyClass_Id,Document_Id,Document_Code,Direccion,Neighborhood_Id,correo,phone")] Company company)
         {
             if (ModelState.IsValid)
             {
@@ -67,6 +69,7 @@ namespace Sistema.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CompanyClass_Id"] = new SelectList(_context.Company_Classification, "CompanyClass_Id", "CompanyClass_Name", company.CompanyClass_Id);
             ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", company.Document_Id);
             ViewData["Neighborhood_Id"] = new SelectList(_context.Neighborhood, "Neighborhood_Id", "Neighborhood_Name", company.Neighborhood_Id);
             return View(company);
@@ -85,6 +88,7 @@ namespace Sistema.Web.Controllers
             {
                 return NotFound();
             }
+            ViewData["CompanyClass_Id"] = new SelectList(_context.Company_Classification, "CompanyClass_Id", "CompanyClass_Name", company.CompanyClass_Id);
             ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", company.Document_Id);
             ViewData["Neighborhood_Id"] = new SelectList(_context.Neighborhood, "Neighborhood_Id", "Neighborhood_Name", company.Neighborhood_Id);
             return View(company);
@@ -95,7 +99,7 @@ namespace Sistema.Web.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Company_Id,Company_Name,ClientClass_Id,Document_Id,Document_Code,Direccion,Neighborhood_Id,correo,phone")] Company company)
+        public async Task<IActionResult> Edit(int id, [Bind("Company_Id,Company_Name,CompanyClass_Id,Document_Id,Document_Code,Direccion,Neighborhood_Id,correo,phone")] Company company)
         {
             if (id != company.Company_Id)
             {
@@ -122,6 +126,7 @@ namespace Sistema.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CompanyClass_Id"] = new SelectList(_context.Company_Classification, "CompanyClass_Id", "CompanyClass_Name", company.CompanyClass_Id);
             ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", company.Document_Id);
             ViewData["Neighborhood_Id"] = new SelectList(_context.Neighborhood, "Neighborhood_Id", "Neighborhood_Name", company.Neighborhood_Id);
             return View(company);
@@ -136,6 +141,7 @@ namespace Sistema.Web.Controllers
             }
 
             var company = await _context.Company
+                .Include(c => c.Company_Classification)
                 .Include(c => c.Document)
                 .Include(c => c.Neighborhood)
                 .FirstOrDefaultAsync(m => m.Company_Id == id);

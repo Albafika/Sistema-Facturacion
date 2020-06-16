@@ -41,11 +41,24 @@ namespace Sistema.Web.Migrations
                 {
                     ClientClass_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Classicifcation_Name = table.Column<string>(maxLength: 50, nullable: false)
+                    ClientClass_Name = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Client_Classification", x => x.ClientClass_Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Company_Classification",
+                columns: table => new
+                {
+                    CompanyClass_Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CompanyClass_Name = table.Column<string>(maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Company_Classification", x => x.CompanyClass_Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,7 +172,6 @@ namespace Sistema.Web.Migrations
                     ApellidoC = table.Column<string>(maxLength: 30, nullable: false),
                     Document_Id = table.Column<int>(nullable: false),
                     ClientClass_Id = table.Column<int>(nullable: false),
-                    Client_ClassificationClientClass_Id = table.Column<int>(nullable: true),
                     Document_Number = table.Column<string>(maxLength: 50, nullable: false),
                     TelefonC = table.Column<string>(maxLength: 15, nullable: false),
                     Correo = table.Column<string>(nullable: false),
@@ -169,11 +181,11 @@ namespace Sistema.Web.Migrations
                 {
                     table.PrimaryKey("PK_Customer", x => x.Customer_Id);
                     table.ForeignKey(
-                        name: "FK_Customer_Client_Classification_Client_ClassificationClientClass_Id",
-                        column: x => x.Client_ClassificationClientClass_Id,
+                        name: "FK_Customer_Client_Classification_ClientClass_Id",
+                        column: x => x.ClientClass_Id,
                         principalTable: "Client_Classification",
                         principalColumn: "ClientClass_Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Customer_Document_Document_Id",
                         column: x => x.Document_Id,
@@ -311,8 +323,7 @@ namespace Sistema.Web.Migrations
                     Company_Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Company_Name = table.Column<string>(nullable: false),
-                    ClientClass_Id = table.Column<int>(nullable: false),
-                    Client_ClassificationClientClass_Id = table.Column<int>(nullable: true),
+                    CompanyClass_Id = table.Column<int>(nullable: false),
                     Document_Id = table.Column<int>(nullable: false),
                     Document_Code = table.Column<string>(maxLength: 50, nullable: false),
                     Direccion = table.Column<string>(nullable: false),
@@ -324,11 +335,11 @@ namespace Sistema.Web.Migrations
                 {
                     table.PrimaryKey("PK_Company", x => x.Company_Id);
                     table.ForeignKey(
-                        name: "FK_Company_Client_Classification_Client_ClassificationClientClass_Id",
-                        column: x => x.Client_ClassificationClientClass_Id,
-                        principalTable: "Client_Classification",
-                        principalColumn: "ClientClass_Id",
-                        onDelete: ReferentialAction.Restrict);
+                        name: "FK_Company_Company_Classification_CompanyClass_Id",
+                        column: x => x.CompanyClass_Id,
+                        principalTable: "Company_Classification",
+                        principalColumn: "CompanyClass_Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Company_Document_Document_Id",
                         column: x => x.Document_Id,
@@ -384,9 +395,9 @@ namespace Sistema.Web.Migrations
                 column: "State_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Company_Client_ClassificationClientClass_Id",
+                name: "IX_Company_CompanyClass_Id",
                 table: "Company",
-                column: "Client_ClassificationClientClass_Id");
+                column: "CompanyClass_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Company_Document_Id",
@@ -399,9 +410,9 @@ namespace Sistema.Web.Migrations
                 column: "Neighborhood_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Customer_Client_ClassificationClientClass_Id",
+                name: "IX_Customer_ClientClass_Id",
                 table: "Customer",
-                column: "Client_ClassificationClientClass_Id");
+                column: "ClientClass_Id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customer_Document_Id",
@@ -472,6 +483,9 @@ namespace Sistema.Web.Migrations
 
             migrationBuilder.DropTable(
                 name: "Brand");
+
+            migrationBuilder.DropTable(
+                name: "Company_Classification");
 
             migrationBuilder.DropTable(
                 name: "Client_Classification");

@@ -30,9 +30,9 @@ namespace Sistema.Web.Data.Entities
         public Document Document { get; set; }
 
 
-        //-----Relacion ClassifiCustomer-----
-        [Display(Name = "Tipo De Empresa")]
-        [ForeignKey("Clasificación Empresa")]
+        //-----Relacion Client_Classification-----
+        [Display(Name = "Tipo De Cliente")]
+        [ForeignKey("Client_Classification")]
         public int ClientClass_Id { get; set; }
         public Client_Classification Client_Classification { get; set; }
 

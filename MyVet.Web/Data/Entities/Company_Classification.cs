@@ -6,17 +6,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Sistema.Web.Data.Entities
 {
-    public class Client_Classification
+    public class Company_Classification
     {
         [Key]
         [Display(Name = "Código")]
-        public int ClientClass_Id { get; set; }
+        public int CompanyClass_Id { get; set; }
 
 
-        [Display(Name = "Clasificación de Clientes")]
+        [Display(Name = "Clasificación de Compañías")]
         [MaxLength(50, ErrorMessage = "The {0} field can not have more than {1} characters.")]
         [Required(ErrorMessage = "The field {0} is mandatory.")]
-        public string ClientClass_Name { get; set; }
+        public string CompanyClass_Name { get; set; }
         /*
         [Display(Name = "Descripción")]
         [MaxLength(100, ErrorMessage = "The {0} field can not have more than {1} characters.")]
@@ -24,6 +24,6 @@ namespace Sistema.Web.Data.Entities
         public string Description { get; set; }
         */
 
-        public ICollection<Customer> Customers { get; set; }
+        public ICollection<Company> Companies { get; set; }
     }
 }

@@ -114,7 +114,7 @@ namespace Sistema.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Classicifcation_Name")
+                    b.Property<string>("ClientClass_Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
@@ -131,10 +131,7 @@ namespace Sistema.Web.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClientClass_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Client_ClassificationClientClass_Id")
+                    b.Property<int>("CompanyClass_Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Company_Name")
@@ -166,13 +163,30 @@ namespace Sistema.Web.Migrations
 
                     b.HasKey("Company_Id");
 
-                    b.HasIndex("Client_ClassificationClientClass_Id");
+                    b.HasIndex("CompanyClass_Id");
 
                     b.HasIndex("Document_Id");
 
                     b.HasIndex("Neighborhood_Id");
 
                     b.ToTable("Company");
+                });
+
+            modelBuilder.Entity("Sistema.Web.Data.Entities.Company_Classification", b =>
+                {
+                    b.Property<int>("CompanyClass_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CompanyClass_Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("CompanyClass_Id");
+
+                    b.ToTable("Company_Classification");
                 });
 
             modelBuilder.Entity("Sistema.Web.Data.Entities.Country", b =>
@@ -207,9 +221,6 @@ namespace Sistema.Web.Migrations
                     b.Property<int>("ClientClass_Id")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Client_ClassificationClientClass_Id")
-                        .HasColumnType("int");
-
                     b.Property<string>("Correo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -239,7 +250,7 @@ namespace Sistema.Web.Migrations
 
                     b.HasKey("Customer_Id");
 
-                    b.HasIndex("Client_ClassificationClientClass_Id");
+                    b.HasIndex("ClientClass_Id");
 
                     b.HasIndex("Document_Id");
 
@@ -553,9 +564,11 @@ namespace Sistema.Web.Migrations
 
             modelBuilder.Entity("Sistema.Web.Data.Entities.Company", b =>
                 {
-                    b.HasOne("Sistema.Web.Data.Entities.Client_Classification", "Client_Classification")
+                    b.HasOne("Sistema.Web.Data.Entities.Company_Classification", "Company_Classification")
                         .WithMany("Companies")
-                        .HasForeignKey("Client_ClassificationClientClass_Id");
+                        .HasForeignKey("CompanyClass_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Sistema.Web.Data.Entities.Document", "Document")
                         .WithMany("Companies")
@@ -574,7 +587,9 @@ namespace Sistema.Web.Migrations
                 {
                     b.HasOne("Sistema.Web.Data.Entities.Client_Classification", "Client_Classification")
                         .WithMany("Customers")
-                        .HasForeignKey("Client_ClassificationClientClass_Id");
+                        .HasForeignKey("ClientClass_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Sistema.Web.Data.Entities.Document", "Document")
                         .WithMany("Customers")

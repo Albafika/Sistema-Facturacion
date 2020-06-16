@@ -16,12 +16,12 @@ namespace Sistema.Web.Data.Entities
         [Required]
         [Display(Name = "Nombre De Empresa")]
         public string Company_Name { get; set; }
-		
-        //-----Relacion ClassifiCustomer-----
+
+        //-----Relacion Company_Classification-----
         [Display(Name = "Tipo De Empresa")]
-        [ForeignKey("Clasificación Empresa")]
-        public int ClientClass_Id { get; set; }
-        public Client_Classification Client_Classification { get; set; }
+        [ForeignKey("Company_Classification")]
+        public int CompanyClass_Id { get; set; }
+        public Company_Classification Company_Classification { get; set; }
 
         //-----Relacion Document-----
         [Display(Name = "Documento")]

@@ -31,5 +31,6 @@ namespace Sistema.Web.Data
         public DbSet<Sistema.Web.Data.Entities.Seller> Seller { get; set; }
         public DbSet<Sistema.Web.Data.Entities.State> State { get; set; }
         public DbSet<Sistema.Web.Data.Entities.Supplier> Supplier { get; set; }
+        public DbSet<Sistema.Web.Data.Entities.Company_Classification> Company_Classification { get; set; }
     }
 }

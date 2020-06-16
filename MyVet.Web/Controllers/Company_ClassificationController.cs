@@ -10,22 +10,22 @@ using Sistema.Web.Data.Entities;
 
 namespace Sistema.Web.Controllers
 {
-    public class Client_ClassificationController : Controller
+    public class Company_ClassificationController : Controller
     {
         private readonly DataContext _context;
 
-        public Client_ClassificationController(DataContext context)
+        public Company_ClassificationController(DataContext context)
         {
             _context = context;
         }
 
-        // GET: Client_Classification
+        // GET: Company_Classification
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Client_Classification.ToListAsync());
+            return View(await _context.Company_Classification.ToListAsync());
         }
 
-        // GET: Client_Classification/Details/5
+        // GET: Company_Classification/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace Sistema.Web.Controllers
                 return NotFound();
             }
 
-            var client_Classification = await _context.Client_Classification
-                .FirstOrDefaultAsync(m => m.ClientClass_Id == id);
-            if (client_Classification == null)
+            var company_Classification = await _context.Company_Classification
+                .FirstOrDefaultAsync(m => m.CompanyClass_Id == id);
+            if (company_Classification == null)
             {
                 return NotFound();
             }
 
-            return View(client_Classification);
+            return View(company_Classification);
         }
 
-        // GET: Client_Classification/Create
+        // GET: Company_Classification/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Client_Classification/Create
+        // POST: Company_Classification/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClientClass_Id,ClientClass_Name")] Client_Classification client_Classification)
+        public async Task<IActionResult> Create([Bind("CompanyClass_Id,CompanyClass_Name")] Company_Classification company_Classification)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(client_Classification);
+                _context.Add(company_Classification);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(client_Classification);
+            return View(company_Classification);
         }
 
-        // GET: Client_Classification/Edit/5
+        // GET: Company_Classification/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace Sistema.Web.Controllers
                 return NotFound();
             }
 
-            var client_Classification = await _context.Client_Classification.FindAsync(id);
-            if (client_Classification == null)
+            var company_Classification = await _context.Company_Classification.FindAsync(id);
+            if (company_Classification == null)
             {
                 return NotFound();
             }
-            return View(client_Classification);
+            return View(company_Classification);
         }
 
-        // POST: Client_Classification/Edit/5
+        // POST: Company_Classification/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClientClass_Id,ClientClass_Name")] Client_Classification client_Classification)
+        public async Task<IActionResult> Edit(int id, [Bind("CompanyClass_Id,CompanyClass_Name")] Company_Classification company_Classification)
         {
-            if (id != client_Classification.ClientClass_Id)
+            if (id != company_Classification.CompanyClass_Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Sistema.Web.Controllers
             {
                 try
                 {
-                    _context.Update(client_Classification);
+                    _context.Update(company_Classification);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!Client_ClassificationExists(client_Classification.ClientClass_Id))
+                    if (!Company_ClassificationExists(company_Classification.CompanyClass_Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace Sistema.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(client_Classification);
+            return View(company_Classification);
         }
 
-        // GET: Client_Classification/Delete/5
+        // GET: Company_Classification/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace Sistema.Web.Controllers
                 return NotFound();
             }
 
-            var client_Classification = await _context.Client_Classification
-                .FirstOrDefaultAsync(m => m.ClientClass_Id == id);
-            if (client_Classification == null)
+            var company_Classification = await _context.Company_Classification
+                .FirstOrDefaultAsync(m => m.CompanyClass_Id == id);
+            if (company_Classification == null)
             {
                 return NotFound();
             }
 
-            return View(client_Classification);
+            return View(company_Classification);
         }
 
-        // POST: Client_Classification/Delete/5
+        // POST: Company_Classification/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var client_Classification = await _context.Client_Classification.FindAsync(id);
-            _context.Client_Classification.Remove(client_Classification);
+            var company_Classification = await _context.Company_Classification.FindAsync(id);
+            _context.Company_Classification.Remove(company_Classification);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool Client_ClassificationExists(int id)
+        private bool Company_ClassificationExists(int id)
         {
-            return _context.Client_Classification.Any(e => e.ClientClass_Id == id);
+            return _context.Company_Classification.Any(e => e.CompanyClass_Id == id);
         }
     }
 }

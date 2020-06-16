@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Company_Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClientClass_Id)
+                @Html.DisplayNameFor(model => model.Company_Classification)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Document)
@@ -46,7 +46,7 @@
                 @Html.DisplayFor(modelItem => item.Company_Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ClientClass_Id)
+                @Html.DisplayFor(modelItem => item.Company_Classification.CompanyClass_Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Document.Documento)

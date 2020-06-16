@@ -22,7 +22,7 @@ namespace Sistema.Web.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            var dataContext = _context.Customer.Include(c => c.Document);
+            var dataContext = _context.Customer.Include(c => c.Client_Classification).Include(c => c.Document);
             return View(await dataContext.ToListAsync());
         }
 
@@ -35,6 +35,7 @@ namespace Sistema.Web.Controllers
             }
 
             var customer = await _context.Customer
+                .Include(c => c.Client_Classification)
                 .Include(c => c.Document)
                 .FirstOrDefaultAsync(m => m.Customer_Id == id);
             if (customer == null)
@@ -48,6 +49,7 @@ namespace Sistema.Web.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
+            ViewData["ClientClass_Id"] = new SelectList(_context.Client_Classification, "ClientClass_Id", "ClientClass_Name");
             ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento");
             return View();
         }
@@ -65,6 +67,7 @@ namespace Sistema.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientClass_Id"] = new SelectList(_context.Client_Classification, "ClientClass_Id", "ClientClass_Name", customer.ClientClass_Id);
             ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", customer.Document_Id);
             return View(customer);
         }
@@ -82,6 +85,7 @@ namespace Sistema.Web.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClientClass_Id"] = new SelectList(_context.Client_Classification, "ClientClass_Id", "ClientClass_Name", customer.ClientClass_Id);
             ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", customer.Document_Id);
             return View(customer);
         }
@@ -118,6 +122,7 @@ namespace Sistema.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClientClass_Id"] = new SelectList(_context.Client_Classification, "ClientClass_Id", "ClientClass_Name", customer.ClientClass_Id);
             ViewData["Document_Id"] = new SelectList(_context.Document, "Document_Id", "Documento", customer.Document_Id);
             return View(customer);
         }
@@ -131,6 +136,7 @@ namespace Sistema.Web.Controllers
             }
 
             var customer = await _context.Customer
+                .Include(c => c.Client_Classification)
                 .Include(c => c.Document)
                 .FirstOrDefaultAsync(m => m.Customer_Id == id);
             if (customer == null)
